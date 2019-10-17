@@ -5,6 +5,19 @@ FSJS project 2 - List Filter and Pagination
    
 // Study guide for this project - https://drive.google.com/file/d/1OD1diUsTMdpfMDv677TfL1xO2CEkykSz/view?usp=sharing
 
+//create a variable to store the student list item element
+//global variables
+
+const studentListItem = document.getElementsByClassName("student-item cf");
+console.log(studentListItem.length);
+
+const itemPerPage= 10;
+
+
+console.log(itemPerPage);
+
+
+
 
 /*** 
    Add your global variables that store the DOM elements you will 
@@ -16,7 +29,6 @@ FSJS project 2 - List Filter and Pagination
    will only be used inside of a function, then it can be locally 
    scoped to that function.
 ***/
-
 
 
 
