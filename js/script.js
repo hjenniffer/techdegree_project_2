@@ -8,7 +8,7 @@ FSJS project 2 - List Filter and Pagination
 //create a variable to store the student list item element
 //global variables
 
-const studentListItem = document.getElementsByClassName("student-item cf");
+const studentListItem = document.getElementsByClassName("student-item");
 const itemsPerPage= 10;
 
 
@@ -52,14 +52,90 @@ if (i >= startIndex && i < endIndex){
 }
 
 
-
 }
 
 
 
 }
 
-console.log(showPage());
+
+//append page link functions
+
+const appendPageLinks = (list)=>{
+
+   // Determine how many pages are needed for the list store in a variable
+   
+   const totalNumberofPages = Math.ceil (list.length/itemsPerPage);
+   const page = document.querySelector('.page'); 
+   const div = document.createElement('div');
+   div.className ='pagination';
+   page.appendChild(div);
+   const ul = document.createElement('ul');
+   div.appendChild(ul);
+
+
+
+//create a loop to show at the bottom of the pages
+for ( let i = 1; i <= totalNumberofPages; i+=1){
+
+const li = document.createElement('li');
+const a = document.createElement('a');
+a.setAttribute('href', '#');
+a.textContent = i;
+li.appendChild(a);
+ul.appendChild(li);
+//set the first li to be acitive
+if (i===1){
+a.className='active';
+
+}
+a.addEventListener('click', e => {
+
+   const link = document.querySelectorAll('a');
+   for(let i =0; i < link.length; i++){
+      link[i].classList.remove('active');
+      e.target.className = 'active';
+      showPage(studentListItem,e.target.textContent);
+
+
+   }
+
+
+
+
+});
+
+
+}
+}
+
+
+
+
+//Dynamically create and append a search bar : extra credit
+
+const pageDiv = document.querySelector('.page-header');
+const searchDiv = document.createElement('div');
+searchDiv.className = 'student-search';
+const input = document.createElement('input');
+input.placeholer = 'Search for students';
+const searchButton = document.createElement('button');
+searchButton.textContent = 'Search';
+
+pageDiv.appendChild(searchDiv);
+searchDiv.appendChild(input);
+searchDiv.appendChild(searchButton);
+
+
+
+
+
+
+
+
+
+appendPageLinks(studentListItem);
+showPage(studentListItem,1);
 
 
 
@@ -81,14 +157,3 @@ console.log(showPage());
 
 
 
-
-/*** 
-   Create the `appendPageLinks function` to generate, append, and add 
-   functionality to the pagination buttons.
-***/
-
-
-
-
-
-// Remember to delete the comments that came with this file, and replace them with your own code comments.
